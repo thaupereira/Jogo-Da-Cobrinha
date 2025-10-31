@@ -1,0 +1,31 @@
+import pygame
+import random
+
+pygame.init()
+tela = pygame.display.set_mode((600, 400))
+pygame.display.set_caption("Jogo da Cobrinha")
+
+cobra = [(100, 50)]
+direcao = (10, 0)
+comida = (300, 200)
+
+def desenhar():
+    tela.fill((0,0,0))
+    for parte in cobra:
+        pygame.draw.rect(tela, (0, 255, 0), (*parte, 10, 10))
+
+    pygame.draw.rect(tela, (255, 0, 0), (*comida, 10, 10))
+    pygame.display.update()
+
+rodando = True
+relogio = pygame.time.Clock()
+
+while rodando:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            rodando = False
+
+    desenhar()
+    relogio.tick(15)
+
+pygame.quit()
